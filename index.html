@@ -29,7 +29,8 @@
   }
 
   .page {
-    width: 210mm;
+    width: 100%;
+    max-width: 210mm; /* Fluid width on smaller screens, capped at A4 width */
     min-height: 297mm;
     margin: 0 auto;
     padding: 10mm 13mm 8mm;
@@ -323,18 +324,59 @@
 
   footer a:hover { color: var(--green); }
 
+  /* ── MOBILE RESPONSIVENESS ── */
+  @media (max-width: 768px) {
+    body {
+      font-size: 12px; /* Slight bump for mobile readability */
+    }
+    .page {
+      padding: 5vw;
+      min-height: auto;
+    }
+    header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+    }
+    .header-left {
+      flex-direction: column;
+      gap: 5px;
+    }
+    .intro-band {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+    }
+    .intro-band-headline {
+      white-space: normal;
+    }
+    .intro-divider {
+      width: 100%;
+      height: 1px;
+    }
+    .problem-row, 
+    .stage-grid, 
+    .del-grid {
+      grid-template-columns: 1fr;
+    }
+    footer {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+    }
+  }
+
   @media print {
     body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-    .page { padding: 9mm 12mm 7mm; }
-    .stage-grid { break-inside: avoid; }
-    .del-grid { break-inside: avoid; }
+    .page { padding: 9mm 12mm 7mm; width: 210mm; }
+    .stage-grid { break-inside: avoid; grid-template-columns: 1fr 1fr; }
+    .del-grid { break-inside: avoid; grid-template-columns: repeat(3, 1fr); }
   }
 </style>
 </head>
 <body>
 <div class="page">
 
-  <!-- HEADER -->
   <header>
     <div class="header-left">
       <a href="https://clariva-home.github.io/Clariva/" class="wordmark" target="_blank">Clariva</a>
@@ -343,7 +385,6 @@
     <span class="page-num">01 / 01</span>
   </header>
 
-  <!-- INTRO BAND -->
   <div class="intro-band">
     <div class="intro-band-headline">Your marketing budget<br/>should generate <span>revenue.</span></div>
     <div class="intro-divider"></div>
@@ -352,13 +393,11 @@
     </div>
   </div>
 
-  <!-- STATEMENT STRIP -->
   <div class="problem-card" style="margin-bottom:10px; border-left: 2px solid var(--gold); display:block;">
     <span class="problem-card-label">Why Clariva Exists</span>
     <p>Agencies report on clicks and impressions. Internal teams execute what they already know. But the real leaks — broken unit economics, funnel drop-offs, poor retention, audience misalignment — go unaddressed for months, and <strong>every rupee spent during that period compounds the loss.</strong> Clariva ensures your marketing budget stops being an expense and starts being a revenue-generating investment. We work across every business stage — from a founder with a product and zero infrastructure to an established brand spending ₹10L/month on ads and wondering why revenue has plateaued. In every case, the output is the same: <strong>a clear strategy, supported by data, with a sequenced plan that tells you exactly what to fix and in what order.</strong> No ambiguity. No generalisations. No guesswork.</p>
   </div>
 
-  <!-- SERVICES -->
   <span class="sec-label">What Clariva Does — By Business Stage</span>
   <hr class="sec-rule"/>
 
@@ -428,7 +467,6 @@
 
   </div>
 
-  <!-- DELIVERABLES -->
   <div class="deliverables-section">
     <span class="sec-label">What You Receive at the End of Every Engagement</span>
     <hr class="sec-rule"/>
@@ -466,13 +504,15 @@
     </div>
   </div>
 
-  <!-- CLOSING STRIP -->
   <div class="why-strip">
     Clariva acts as the strategic partner that finds the technical and operational leaks in your marketing before you spend another rupee on the wrong fix — and then tells you <em>exactly what to execute</em> to generate more leads, more conversions, and more revenue. Whether you are spending ₹50,000/month or preparing to spend your first rupee, <strong>you walk away with a plan your team can act on immediately.</strong> No retainer dependency. No vague recommendations. Just a clear, data-backed path to growth.
   </div>
 
-  <!-- FOOTER -->
   <footer>
     <a href="/cdn-cgi/l/email-protection#0c6f606d7e657a6d22646361694c6b616d6560226f6361"><span class="__cf_email__" data-cfemail="96f5faf7e4ffe0f7b8fef9fbf3d6f1fbf7fffab8f5f9fb">[email&#160;protected]</span></a>
     <span>© 2025 Clariva — Marketing Diagnostic Advisory</span>
+  </footer>
 
+</div>
+</body>
+</html>
