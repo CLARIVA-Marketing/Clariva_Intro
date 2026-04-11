@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Clariva — Marketing Diagnostic Advisory</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Jost:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --ivory:      #F7F4EE;
+    --ivory-deep: #EDE9E1;
+    --charcoal:   #2D2D2A;
+    --stone:      #6B6965;
+    --forest:     #1C2B1A;
+    --green:      #3A7556;
+    --gold:       #C4933F;
+    --mist:       #D6D3CB;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--ivory);
+    color: var(--charcoal);
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    font-size: 11.2px;
+    line-height: 1.6;
+  }
+
+  .page {
+    width: 210mm;
+    min-height: 297mm;
+    margin: 0 auto;
+    padding: 10mm 13mm 8mm;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  /* ── HEADER ── */
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--gold);
+    margin-bottom: 10px;
+  }
+
+  .header-left { display: flex; align-items: baseline; gap: 12px; }
+
+  .wordmark {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    font-size: 17px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--forest);
+    text-decoration: none;
+  }
+
+  .doc-type, .page-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 7.5px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--stone);
+  }
+
+  /* ── INTRO BAND ── */
+  .intro-band {
+    background: var(--forest);
+    color: var(--ivory);
+    padding: 11px 14px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+  }
+
+  .intro-band-headline {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    font-size: 18px;
+    letter-spacing: 0.03em;
+    color: var(--ivory);
+    white-space: nowrap;
+    line-height: 1.2;
+  }
+
+  .intro-band-headline span { color: var(--gold); }
+
+  .intro-divider {
+    width: 1px;
+    height: 36px;
+    background: var(--gold);
+    flex-shrink: 0;
+  }
+
+  .intro-band-body {
+    font-size: 10.5px;
+    color: #c8c4bc;
+    line-height: 1.55;
+    font-weight: 300;
+  }
+
+  .intro-band-body strong { color: var(--ivory); font-weight: 500; }
+
+  /* ── PROBLEM ROW ── */
+  .problem-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+
+  .problem-card {
+    background: var(--ivory-deep);
+    border-left: 2px solid var(--gold);
+    padding: 9px 11px;
+  }
+
+  .problem-card-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 7px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .problem-card p {
+    font-size: 10.5px;
+    color: var(--charcoal);
+    line-height: 1.55;
+  }
+
+  .problem-card p strong { font-weight: 500; color: var(--forest); }
+
+  /* ── SECTION LABEL ── */
+  .sec-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 7px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .sec-rule {
+    width: 100%;
+    height: 1px;
+    background: var(--gold);
+    border: none;
+    margin-bottom: 7px;
+  }
+
+  /* ── STAGE GRID ── */
+  .stage-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 7px;
+    margin-bottom: 10px;
+  }
+
+  .stage-card {
+    border: 1px solid var(--mist);
+    border-top: 2px solid var(--green);
+    background: var(--ivory);
+    padding: 9px 11px 8px;
+  }
+
+  .stage-card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 4px;
+  }
+
+  .stage-card-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    font-size: 13.5px;
+    color: var(--forest);
+    line-height: 1.2;
+  }
+
+  .stage-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 7px;
+    letter-spacing: 0.14em;
+    color: var(--gold);
+  }
+
+  .stage-sub {
+    font-family: 'Jost', sans-serif;
+    font-size: 9.5px;
+    color: var(--stone);
+    font-style: italic;
+    margin-bottom: 6px;
+    line-height: 1.35;
+  }
+
+  .stage-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .stage-list li {
+    font-size: 10.2px;
+    color: var(--charcoal);
+    padding: 3.5px 0 3.5px 12px;
+    position: relative;
+    border-bottom: 1px solid var(--mist);
+    line-height: 1.45;
+  }
+
+  .stage-list li:last-child { border-bottom: none; }
+
+  .stage-list li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--gold);
+    font-size: 9px;
+    top: 4px;
+  }
+
+  .stage-list li strong { font-weight: 500; color: var(--forest); }
+  .stage-list li em { color: var(--green); font-style: normal; font-weight: 400; }
+
+  /* ── DELIVERABLES ── */
+  .deliverables-section { margin-bottom: 10px; }
+
+  .del-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 7px;
+  }
+
+  .del-card {
+    background: var(--ivory-deep);
+    border: 1px solid var(--mist);
+    padding: 9px 11px;
+  }
+
+  .del-card-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    font-size: 12.5px;
+    color: var(--forest);
+    margin-bottom: 5px;
+    padding-bottom: 4px;
+    border-bottom: 1px solid var(--gold);
+  }
+
+  .del-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .del-card ul li {
+    font-size: 9.8px;
+    color: var(--charcoal);
+    padding: 2.5px 0 2.5px 10px;
+    position: relative;
+    line-height: 1.45;
+    border-bottom: 1px solid var(--mist);
+  }
+
+  .del-card ul li:last-child { border-bottom: none; }
+
+  .del-card ul li::before {
+    content: '·';
+    position: absolute;
+    left: 2px;
+    color: var(--gold);
+    font-size: 14px;
+    top: 0px;
+    line-height: 1.3;
+  }
+
+  .del-card ul li strong { font-weight: 500; color: var(--green); }
+
+  /* ── WHY CLARIVA STRIP ── */
+  .why-strip {
+    background: var(--ivory-deep);
+    border: 1px solid var(--mist);
+    border-left: 3px solid var(--green);
+    padding: 9px 14px;
+    margin-bottom: 10px;
+    font-size: 10.5px;
+    line-height: 1.6;
+    color: var(--charcoal);
+  }
+
+  .why-strip strong { font-weight: 500; color: var(--forest); }
+  .why-strip em { color: var(--green); font-style: normal; }
+
+  /* ── FOOTER ── */
+  footer {
+    margin-top: auto;
+    border-top: 1px solid var(--mist);
+    padding-top: 7px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  footer a, footer span {
+    font-family: 'DM Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--stone);
+    text-decoration: none;
+  }
+
+  footer a:hover { color: var(--green); }
+
+  @media print {
+    body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .page { padding: 9mm 12mm 7mm; }
+    .stage-grid { break-inside: avoid; }
+    .del-grid { break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <header>
+    <div class="header-left">
+      <a href="https://clariva-home.github.io/Clariva/" class="wordmark" target="_blank">Clariva</a>
+      <span class="doc-type">Company Overview — Marketing Diagnostic Advisory</span>
+    </div>
+    <span class="page-num">01 / 01</span>
+  </header>
+
+  <!-- INTRO BAND -->
+  <div class="intro-band">
+    <div class="intro-band-headline">Your marketing budget<br/>should generate <span>revenue.</span></div>
+    <div class="intro-divider"></div>
+    <div class="intro-band-body">
+      <strong>Clariva is a Marketing Diagnostic Advisory.</strong> Marketing is the front door of your business — the engine that brings in clients, and clients are the only source of revenue. If your marketing isn't bringing in leads, your company stops growing. Clariva finds exactly where your marketing is failing, tells you precisely what to fix, and hands you the execution plan to get more leads, more conversions, and more revenue. We don't run ads. We don't manage accounts. We deliver the strategy your business needs to grow.
+    </div>
+  </div>
+
+  <!-- STATEMENT STRIP -->
+  <div class="problem-card" style="margin-bottom:10px; border-left: 2px solid var(--gold); display:block;">
+    <span class="problem-card-label">Why Clariva Exists</span>
+    <p>Agencies report on clicks and impressions. Internal teams execute what they already know. But the real leaks — broken unit economics, funnel drop-offs, poor retention, audience misalignment — go unaddressed for months, and <strong>every rupee spent during that period compounds the loss.</strong> Clariva ensures your marketing budget stops being an expense and starts being a revenue-generating investment. We work across every business stage — from a founder with a product and zero infrastructure to an established brand spending ₹10L/month on ads and wondering why revenue has plateaued. In every case, the output is the same: <strong>a clear strategy, supported by data, with a sequenced plan that tells you exactly what to fix and in what order.</strong> No ambiguity. No generalisations. No guesswork.</p>
+  </div>
+
+  <!-- SERVICES -->
+  <span class="sec-label">What Clariva Does — By Business Stage</span>
+  <hr class="sec-rule"/>
+
+  <div class="stage-grid">
+
+    <div class="stage-card">
+      <div class="stage-card-top">
+        <div class="stage-card-title">Established Brands</div>
+        <span class="stage-num">STAGE 01</span>
+      </div>
+      <div class="stage-sub">Revenue ₹2L–₹15L/month · Plateau or rising costs · System exists but isn't growing</div>
+      <ul class="stage-list">
+        <li><strong>Unit Economics Audit</strong> — True profit per order calculated after COGS, shipping, packaging, RTO & ad spend. <em>Stop scaling products losing you money silently.</em></li>
+        <li><strong>Funnel Leak Detection</strong> — Exact drop-off stage identified: product page, cart, or checkout — with root cause named. <em>Convert visitors you already have instead of buying more traffic.</em></li>
+        <li><strong>Retention Cohort Analysis</strong> — 30/60/90-day repeat purchase rates reveal if you're building a brand or renting customers. <em>Redirect spend from new ads to cheaper reactivation of existing buyers.</em></li>
+        <li><strong>Creative–Audience Audit</strong> — Hook Rate & CTR analysis confirms if ads actually resonate with the audience seeing them. <em>Stop producing content nobody watches.</em></li>
+        <li><strong>Narrative Consistency Check</strong> — Ad promise vs. landing page vs. packaging verified for coherence. <em>Consistency builds trust; trust converts strangers into buyers.</em></li>
+        <li><strong>RTO Reduction Strategy</strong> — COD return patterns analysed and protocols defined. <em>A 5% reduction in returns saves thousands in wasted shipping costs monthly.</em></li>
+      </ul>
+    </div>
+
+    <div class="stage-card">
+      <div class="stage-card-top">
+        <div class="stage-card-title">Building-Stage Brands</div>
+        <span class="stage-num">STAGE 02</span>
+      </div>
+      <div class="stage-sub">Early sales · Ready to build a professional marketing engine · Avoiding expensive mistakes</div>
+      <ul class="stage-list">
+        <li><strong>Break-Even CAC Modeling</strong> — Exact maximum spend per customer acquisition calculated before losses begin. <em>Set ad budgets with confidence, not guesswork.</em></li>
+        <li><strong>Category Benchmark Analysis</strong> — Healthy vs. critical metric ranges for your specific niche (Skincare, Food, Apparel, etc.). <em>Know if your 2% CVR is good or critical — measured against the best in your category.</em></li>
+        <li><strong>Funnel Architecture</strong> — Ideal ad-to-purchase path designed with trust signals (reviews, guarantees, social proof) placed correctly from Day 1. <em>Build a high-converting funnel the first time — not after an expensive redesign.</em></li>
+        <li><strong>Measurement Infrastructure</strong> — 7 core metrics defined: MER, ROAS, AOV, CAC, LTV, CVR, Repeat Rate — with a daily tracking structure. <em>Own your numbers without relying on an agency to tell you if you're healthy.</em></li>
+        <li><strong>30-Day Scaling Roadmap</strong> — Prioritised layer-by-layer sequence: which marketing channel to activate first and why. <em>Scale in the right order — not randomly.</em></li>
+      </ul>
+    </div>
+
+    <div class="stage-card">
+      <div class="stage-card-top">
+        <div class="stage-card-title">Blank-Slate Brands</div>
+        <span class="stage-num">STAGE 03</span>
+      </div>
+      <div class="stage-sub">Product ready · No marketing system yet · Needs a blueprint to enter the market correctly</div>
+      <ul class="stage-list">
+        <li><strong>Category & Competitive Research</strong> — Market gap analysis to find where your brand can win. <em>Launch with a unique angle — not as "just another brand" in a crowded space.</em></li>
+        <li><strong>Narrative Core Construction</strong> — Your Brand Core built: who you serve, what problem you solve, why you're different — in one clear sentence. <em>Clear identity makes marketing cheaper — you only speak to people who need you.</em></li>
+        <li><strong>Strategic Market-Entry Blueprint</strong> — Channels, positioning, and messaging sequence for your first 30 days. <em>Launch with a professional strategy, not hope.</em></li>
+        <li><strong>Offer & Pricing Design</strong> — Right launch price, bundle structure, and shipping threshold for first-order profitability. <em>A structured offer is the fastest path to initial cash flow.</em></li>
+        <li><strong>Competitor Analysis</strong> — Direct and indirect rival weaknesses mapped to your window of opportunity. <em>Enter knowing exactly where they're failing and how to position around it.</em></li>
+      </ul>
+    </div>
+
+    <div class="stage-card">
+      <div class="stage-card-top">
+        <div class="stage-card-title">Local & Neighbourhood Businesses</div>
+        <span class="stage-num">STAGE 04</span>
+      </div>
+      <div class="stage-sub">Physical stores · Local services · Cafés, salons, gyms · Footfall without high ad spend</div>
+      <ul class="stage-list">
+        <li><strong>Hyperlocal Demand Analysis</strong> — Neighbourhood-level search behaviour and service gaps identified. <em>Target people within 2 km who are already looking for exactly what you offer.</em></li>
+        <li><strong>Google Business Profile Audit</strong> — Google Maps presence optimised so you rank first for "near me" searches. <em>Free inbound leads from people who are already ready to buy — right now.</em></li>
+        <li><strong>Footfall Conversion Audit</strong> — The journey from board/profile visibility to in-store purchase mapped and broken points fixed. <em>More walk-ins from the same visibility you already have.</em></li>
+        <li><strong>Local Review Strategy</strong> — Repeatable system to collect and display reviews from happy local clients. <em>Reviews are digital word-of-mouth — the #1 reason a local customer chooses you over a competitor.</em></li>
+        <li><strong>Non-Digital Outreach Planning</strong> — Signage, community partnerships, and local networking plans that build reputation without Meta ad spend.</li>
+        <li><strong>WhatsApp Retention System</strong> — Catalogue setup and automated follow-ups to convert a one-time walk-in into a regular. <em>Selling to an existing client costs a fraction of acquiring a new one.</em></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <!-- DELIVERABLES -->
+  <div class="deliverables-section">
+    <span class="sec-label">What You Receive at the End of Every Engagement</span>
+    <hr class="sec-rule"/>
+    <div class="del-grid">
+      <div class="del-card">
+        <div class="del-card-title">Diagnostic Report (4–6 Pages)</div>
+        <ul>
+          <li><strong>Primary Growth Constraint Named</strong> — one specific, documented bottleneck holding back your revenue</li>
+          <li><strong>Data Evidence Provided</strong> — every finding supported by your actual numbers, not assumptions</li>
+          <li><strong>Unit Economics Breakdown</strong> — true profit per order, ROAS reality check, and cost leak identification</li>
+          <li><strong>Funnel & Retention Analysis</strong> — where customers leave and whether they come back</li>
+          <li><strong>Competitive & Narrative Gaps</strong> — where your message and market position are misaligned</li>
+        </ul>
+      </div>
+      <div class="del-card">
+        <div class="del-card-title">Core Metrics Framework</div>
+        <ul>
+          <li><strong>7 Non-Negotiable Metrics Defined</strong> — MER, ROAS, AOV, CAC, LTV, CVR, Repeat Rate — explained simply</li>
+          <li><strong>Category Benchmarks</strong> — healthy vs. critical ranges for your niche so you always know where you stand</li>
+          <li><strong>Break-Even CAC Calculated</strong> — exact spend ceiling per customer for your specific business model</li>
+          <li><strong>Daily Tracking Template</strong> — simple dashboard your team can use without analyst support</li>
+          <li><strong>Red Flag Thresholds</strong> — early-warning signals so problems are caught before they become expensive</li>
+        </ul>
+      </div>
+      <div class="del-card">
+        <div class="del-card-title">Actionable Roadmap</div>
+        <ul>
+          <li><strong>30-Day Execution Plan</strong> — what to fix first, second, and third — with clear reasoning for the sequence</li>
+          <li><strong>Quick Wins Identified</strong> — changes executable within 48–72 hours with immediate measurable impact</li>
+          <li><strong>Scaling Sequence</strong> — correct order to activate channels and increase budget without wasting spend</li>
+          <li><strong>RTO & Retention Protocols</strong> — steps to cut return losses and increase repeat purchase rate</li>
+          <li><strong>Self-Sufficient Plan</strong> — no Clariva dependency to execute; your team can own and run it</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- CLOSING STRIP -->
+  <div class="why-strip">
+    Clariva acts as the strategic partner that finds the technical and operational leaks in your marketing before you spend another rupee on the wrong fix — and then tells you <em>exactly what to execute</em> to generate more leads, more conversions, and more revenue. Whether you are spending ₹50,000/month or preparing to spend your first rupee, <strong>you walk away with a plan your team can act on immediately.</strong> No retainer dependency. No vague recommendations. Just a clear, data-backed path to growth.
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <a href="/cdn-cgi/l/email-protection#0c6f606d7e657a6d22646361694c6b616d6560226f6361"><span class="__cf_email__" data-cfemail="96f5faf7e4ffe0f7b8fef9fbf3d6f1fbf7fffab8f5f9fb">[email&#160;protected]</span></a>
+    <span>© 2025 Clariva — Marketing Diagnostic Advisory</span>
+
